@@ -32,7 +32,7 @@ class MarkdownBuilder
     {
         return $this
             ->writeln($header)
-            ->writeln(str_repeat("=", strlen($header)))
+            ->writeln(str_repeat("=", mb_strlen($header)))
             ->br();
     }
 
@@ -44,7 +44,7 @@ class MarkdownBuilder
     {
         return $this
             ->writeln($header)
-            ->writeln(str_repeat("-", strlen($header)))
+            ->writeln(str_repeat("-", mb_strlen($header)))
             ->br();
     }
 
