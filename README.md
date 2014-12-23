@@ -33,6 +33,5 @@ $markdown = \DavidBadura\MarkdownBuilder\MarkdownBuilder::create()
 Todos
 -----
 
-* write tests
 * write documentation
 * add more markdown features

@@ -19,7 +19,6 @@ class MarkdownBuilder
     public function p($text)
     {
         return $this
-            ->br()
             ->writeln($text)
             ->br();
     }
@@ -72,7 +71,9 @@ class MarkdownBuilder
 
         $content = implode("\n", $newLines);
 
-        return $this->p($content);
+        return $this
+            ->br()
+            ->p($content);
     }
 
     /**
@@ -116,10 +117,11 @@ class MarkdownBuilder
      */
     public function code($code, $lang = '')
     {
-        $this
+        return $this
             ->writeln('```' . $lang)
             ->writeln($code)
-            ->writeln('```');
+            ->writeln('```')
+            ->br();
     }
 
     /**
