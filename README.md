@@ -14,20 +14,28 @@ Usage
 -----
 
 ```php
-$markdown = \DavidBadura\MarkdownBuilder\MarkdownBuilder::create()
+$builder = new MarkdownBuilder();
+
+$builder
     ->h1('Markdown Builder')
-    ->p('foo bar baz')
-    ->code('<?php echo 'hello world' ?>', 'php')
+    ->p('A simple helper class to create markdown.')
+    ->h2($builder->markdown()->write('Install ')->bold('foo'))
+    ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
+    ->h2('Usage')
+    ->code($code, 'php')
+    ->h2('Todos')
     ->bulletedList([
-        'eins',
-        'zwei',
-        'drei'
-    ])
-    ->blockqoute('
-        qoute....
-        lalalalal
-    ')
-    ->getMarkdown();
+        'write tests',
+        $builder
+            ->markdown()
+            ->write('hallo ')
+            ->link('google.com', 'Google')
+            ->write('foo bar')
+        ,
+        'add more markdown features'
+    ]);
+    
+echo $builder->getMarkdown();
 ```
 
 Todos

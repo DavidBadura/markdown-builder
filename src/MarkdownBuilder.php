@@ -13,6 +13,14 @@ class MarkdownBuilder
     protected $markdown;
 
     /**
+     * @return MarkdownBuilder
+     */
+    public function markdown()
+    {
+        return new self();
+    }
+
+    /**
      * @param string $text
      * @return $this
      */
@@ -155,11 +163,52 @@ class MarkdownBuilder
     }
 
     /**
+     * @param string $string
+     * @return $this
+     */
+    public function bold($string)
+    {
+        return $this
+            ->write(sprintf('*%s* ', $string));
+    }
+
+    /**
+     * @param string $url
+     * @param string $title
+     * @return $this
+     */
+    public function link($url, $title)
+    {
+        return $this
+            ->write(sprintf('[%s](%s) ', $url, $title));
+    }
+
+    /**
+     * @param string $url
+     * @param string $title
+     * @return $this
+     */
+    public function img($url, $title)
+    {
+        return $this
+            ->write(sprintf('![%s](%s) ', $url, $title));
+    }
+
+
+    /**
      * @return string
      */
     public function getMarkdown()
     {
-        return $this->markdown;
+        return trim($this->markdown);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getMarkdown();
     }
 
     /**

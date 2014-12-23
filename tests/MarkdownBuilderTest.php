@@ -14,8 +14,6 @@ class MarkdownBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $markdown = <<<MARKDOWN
 foo bar
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -32,8 +30,6 @@ MARKDOWN;
         $markdown = <<<MARKDOWN
 foo bar
 =======
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -49,8 +45,6 @@ MARKDOWN;
         $markdown = <<<MARKDOWN
 foo bar
 -------
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -65,8 +59,6 @@ MARKDOWN;
     {
         $markdown = <<<MARKDOWN
 ### foo bar
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -80,11 +72,8 @@ MARKDOWN;
     public function testBlockqoute()
     {
         $markdown = <<<MARKDOWN
-
 >  foo bar
 >  hey ho
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -101,7 +90,6 @@ MARKDOWN;
 * Hallo
 * foo
 * bar
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -122,7 +110,6 @@ MARKDOWN;
 1. Hallo
 2. foo
 3. bar
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -141,8 +128,6 @@ MARKDOWN;
     {
         $markdown = <<<MARKDOWN
 ---------------------------------------
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -160,12 +145,52 @@ MARKDOWN;
 ```bash
 apt-get install php5
 ```
-
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->code('apt-get install php5', 'bash');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testImg()
+    {
+        $markdown = <<<MARKDOWN
+![test.jpg](cat)
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->img('test.jpg', 'cat');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testLink()
+    {
+        $markdown = <<<MARKDOWN
+[google.com](Google)
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->link('google.com', 'Google');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testBold()
+    {
+        $markdown = <<<MARKDOWN
+*Yeah!*
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->bold('Yeah!');
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
@@ -190,7 +215,6 @@ MARKDOWN;
     {
         $markdown = <<<MARKDOWN
 foo bar
-
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
@@ -209,8 +233,8 @@ Markdown Builder
 
 A simple helper class to create markdown.
 
-Installation
-------------
+Install *foo*
+-------------
 
 ```bash
 composer require 'davidbadura/markdown-builder@dev'
@@ -240,9 +264,8 @@ Todos
 -----
 
 * write tests
-* write documentation
+* hallo [google.com](Google) foo bar
 * add more markdown features
-
 MARKDOWN;
 
         $code = <<<CODE
@@ -262,17 +285,24 @@ MARKDOWN;
     ->getMarkdown();
 CODE;
 
-        $builder = (new MarkdownBuilder())
+        $builder = new MarkdownBuilder();
+
+        $builder
             ->h1('Markdown Builder')
             ->p('A simple helper class to create markdown.')
-            ->h2('Installation')
+            ->h2($builder->markdown()->write('Install ')->bold('foo'))
             ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
             ->h2('Usage')
             ->code($code, 'php')
             ->h2('Todos')
             ->bulletedList([
                 'write tests',
-                'write documentation',
+                $builder
+                    ->markdown()
+                    ->write('hallo ')
+                    ->link('google.com', 'Google')
+                    ->write('foo bar')
+                ,
                 'add more markdown features'
             ]);
 
