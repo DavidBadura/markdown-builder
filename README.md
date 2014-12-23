@@ -1,6 +1,8 @@
 Markdown Builder
 ================
 
+[![Build Status](https://travis-ci.org/DavidBadura/markdown-builder.svg)](https://travis-ci.org/DavidBadura/markdown-builder)
+
 A simple helper class to create markdown.
 
 Installation
