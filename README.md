@@ -45,9 +45,9 @@ A simple helper class to create markdown.
 Install **this** powerfull library
 ----------------------------------
 
- ```bash
- composer require 'davidbadura/markdown-builder@dev'
- ```
+    ```bash
+    composer require 'davidbadura/markdown-builder@dev'
+    ```
 
 Todos
 -----
