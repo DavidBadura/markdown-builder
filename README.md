@@ -178,7 +178,7 @@ echo (new MarkdownBuilder())->code('$var = "test";', 'php')->getMarkdown();
 Markdown:
 
 ```markdown
-```php
-$var = "test";
-```
+    ```php
+    $var = "test";
+    ```
 ```
