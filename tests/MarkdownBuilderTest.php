@@ -21,7 +21,6 @@ MARKDOWN;
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
-
     /**
      *
      */
@@ -104,6 +103,27 @@ MARKDOWN;
     /**
      *
      */
+    public function testBulletedListMultiline()
+    {
+        $markdown = <<<MARKDOWN
+* Hallo
+* foo
+  bar
+* bar
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->bulletedList([
+            'Hallo',
+            "foo\nbar",
+            'bar'
+        ]);
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
     public function testNumberedList()
     {
         $markdown = <<<MARKDOWN
@@ -116,6 +136,53 @@ MARKDOWN;
         $builder->numberedList([
             'Hallo',
             'foo',
+            'bar'
+        ]);
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testNumberedListMultiline()
+    {
+        $markdown = <<<MARKDOWN
+1. Hallo
+2. foo
+   geheim
+3. bar
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->numberedList([
+            'Hallo',
+            "foo\ngeheim",
+            'bar'
+        ]);
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testMutlitlists()
+    {
+        $markdown = <<<MARKDOWN
+1. Hallo
+2. * A
+   * B
+   * C
+3. bar
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->numberedList([
+            'Hallo',
+            $builder->markdown()->bulletedList([
+                'A',
+                'B',
+                'C'
+            ]),
             'bar'
         ]);
         $this->assertEquals($markdown, $builder->getMarkdown());
@@ -158,11 +225,11 @@ MARKDOWN;
     public function testImg()
     {
         $markdown = <<<MARKDOWN
-![test.jpg](cat)
+![Cats](cat.jpg)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->img('test.jpg', 'cat');
+        $builder->img('cat.jpg', 'Cats');
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
@@ -172,11 +239,11 @@ MARKDOWN;
     public function testLink()
     {
         $markdown = <<<MARKDOWN
-[google.com](Google)
+[Google](http://google.com)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->link('google.com', 'Google');
+        $builder->link('http://google.com', 'Google');
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
@@ -186,12 +253,39 @@ MARKDOWN;
     public function testBold()
     {
         $markdown = <<<MARKDOWN
-*Yeah!*
+**Yeah!**
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->bold('Yeah!');
         $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testItalic()
+    {
+        $markdown = <<<MARKDOWN
+*Yeah!*
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->italic('Yeah!');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testInlineCode()
+    {
+        $markdown = <<<MARKDOWN
+`\$var = "foo";`
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();;
+        $this->assertEquals($markdown, $builder->inlineCode('$var = "foo";'));
     }
 
     /**
@@ -233,8 +327,8 @@ Markdown Builder
 
 A simple helper class to create markdown.
 
-Install *foo*
--------------
+Install **foo**
+---------------
 
 ```bash
 composer require 'davidbadura/markdown-builder@dev'
@@ -264,7 +358,7 @@ Todos
 -----
 
 * write tests
-* hallo [google.com](Google) foo bar
+* hallo [Google](google.com) foo bar
 * add more markdown features
 MARKDOWN;
 
@@ -290,7 +384,7 @@ CODE;
         $builder
             ->h1('Markdown Builder')
             ->p('A simple helper class to create markdown.')
-            ->h2($builder->markdown()->write('Install ')->bold('foo'))
+            ->h2('Install ' . $builder->inlineBold('foo'))
             ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
             ->h2('Usage')
             ->code($code, 'php')
@@ -307,5 +401,27 @@ CODE;
             ]);
 
         $this->assertEquals($markdown, $builder->getMarkdown());
+
+
+        $builder = new MarkdownBuilder();
+
+        $builder
+            ->h1('Markdown Builder')
+            ->p('A simple helper class to create markdown.')
+            ->h2('Install ' . $builder->inlineBold('this') . 'powerfull library')
+            ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
+            ->h2('Usage')
+            ->code($code, 'php')
+            ->h2('Todos')
+            ->bulletedList([
+                'write tests',
+                $builder
+                    ->markdown()
+                    ->numberedList(['A', 'B', 'C'])
+                ,
+                'add more markdown features'
+            ]);
+
+        echo $builder->getMarkdown();
     }
 }

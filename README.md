@@ -21,7 +21,7 @@ $builder = new MarkdownBuilder();
 $builder
     ->h1('Markdown Builder')
     ->p('A simple helper class to create markdown.')
-    ->h2($builder->markdown()->write('Install ')->bold('foo'))
+    ->h2('Install ' . $builder->inlineBold('this') . 'powerfull library')
     ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
     ->h2('Usage')
     ->code($code, 'php')
@@ -30,9 +30,7 @@ $builder
         'write tests',
         $builder
             ->markdown()
-            ->write('hallo ')
-            ->link('google.com', 'Google')
-            ->write('foo bar')
+            ->numberedList(['A', 'B', 'C'])
         ,
         'add more markdown features'
     ]);
@@ -40,8 +38,41 @@ $builder
 echo $builder->getMarkdown();
 ```
 
-Todos
------
+API
+---
 
-* write documentation
-* add more markdown features
+The markdown builder have two kinds of elements, block and inline elements.
+Block elements will be buffered and you can get the markdown if you call the method `getMarkdown()`.
+All inline Elements are prefixed with `inline*` and you get instantly the markdown output.
+
+### Block Elements
+
+#### h1
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder)->h1('Hello World')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+Hello World
+===========
+```
+
+#### h2
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder)->h2('Hello second world')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+Hello second world
+------------------
+```
