@@ -52,7 +52,7 @@ All inline Elements are prefixed with `inline*` and you get instantly the markdo
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder)->h1('Hello World')->getMarkdown();
+echo (new MarkdownBuilder())->h1('Hello World')->getMarkdown();
 ```
 
 Markdown:
@@ -67,7 +67,7 @@ Hello World
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder)->h2('Hello second world')->getMarkdown();
+echo (new MarkdownBuilder())->h2('Hello second world')->getMarkdown();
 ```
 
 Markdown:
@@ -75,4 +75,124 @@ Markdown:
 ```markdown
 Hello second world
 ------------------
+```
+
+#### h3
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->h3('My name is...')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+### My name is...
+```
+
+#### p
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->p('paragraph')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+paragraph
+```
+
+#### p
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->p('paragraph')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+paragraph
+```
+
+#### blockqoute
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->blockqoute("Foo\nBar\nBaz")->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+> Foo
+> Bar
+> Baz
+```
+
+#### bulleted list
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->bulletedList(['Foo', 'Bar', 'Baz'])->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+* Foo
+* Bar
+* Baz
+```
+
+#### numbered list
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->numberedList(['Foo', 'Bar', 'Baz'])->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+1. Foo
+2. Bar
+3. Baz
+```
+
+### hr
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->hr()->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+------------------------
+```
+
+### code
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->code('$var = "test";', 'php')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+\```php
+$var = "test";
+\```
 ```
