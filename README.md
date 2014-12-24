@@ -224,7 +224,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineCode('huhu');
+echo (new MarkdownBuilder())->inlineItalic('huhu');
 ```
 
 Markdown:
