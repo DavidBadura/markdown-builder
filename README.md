@@ -105,20 +105,6 @@ Markdown:
 paragraph
 ```
 
-#### p
-
-PHP-Code:
-
-```php
-echo (new MarkdownBuilder())->p('paragraph')->getMarkdown();
-```
-
-Markdown:
-
-```markdown
-paragraph
-```
-
 #### blockqoute
 
 PHP-Code:
@@ -192,7 +178,7 @@ echo (new MarkdownBuilder())->code('$var = "test";', 'php')->getMarkdown();
 Markdown:
 
 ```markdown
-\```php
+```php
 $var = "test";
-\```
+```
 ```
