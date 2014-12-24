@@ -210,7 +210,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineBold('Hey!')->getMarkdown();
+echo (new MarkdownBuilder())->inlineBold('Hey!');
 ```
 
 Markdown:
@@ -224,7 +224,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineCode('huhu')->getMarkdown();
+echo (new MarkdownBuilder())->inlineCode('huhu');
 ```
 
 Markdown:
@@ -239,7 +239,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineCode('$var = "test";')->getMarkdown();
+echo (new MarkdownBuilder())->inlineCode('$var = "test";');
 ```
 
 Markdown:
@@ -253,7 +253,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google')->getMarkdown();
+echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google');
 ```
 
 Markdown:
@@ -267,7 +267,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat')->getMarkdown();
+echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat');
 ```
 
 Markdown:
