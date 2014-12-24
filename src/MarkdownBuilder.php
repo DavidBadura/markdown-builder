@@ -15,7 +15,7 @@ class MarkdownBuilder
     /**
      * @return MarkdownBuilder
      */
-    public function markdown()
+    public function block()
     {
         return new self();
     }
@@ -179,19 +179,8 @@ class MarkdownBuilder
      */
     public function inlineItalic($string)
     {
-        return sprintf('*%s* ', $string);
+        return sprintf('*%s*', $string);
     }
-
-    /**
-     * @param string $string
-     * @return $this
-     */
-    public function italic($string)
-    {
-        return $this
-            ->write($this->inlineItalic($string));
-    }
-
 
     /**
      * @param string $string
@@ -199,17 +188,7 @@ class MarkdownBuilder
      */
     public function inlineBold($string)
     {
-        return sprintf('**%s** ', $string);
-    }
-
-    /**
-     * @param string $string
-     * @return $this
-     */
-    public function bold($string)
-    {
-        return $this
-            ->write($this->inlineBold($string));
+        return sprintf('**%s**', $string);
     }
 
     /**
@@ -219,18 +198,7 @@ class MarkdownBuilder
      */
     public function inlineLink($url, $title)
     {
-        return sprintf('[%s](%s) ', $title, $url);
-    }
-
-    /**
-     * @param string $url
-     * @param string $title
-     * @return $this
-     */
-    public function link($url, $title)
-    {
-        return $this
-            ->write($this->inlineLink($url, $title));
+        return sprintf('[%s](%s)', $title, $url);
     }
 
     /**
@@ -240,25 +208,22 @@ class MarkdownBuilder
      */
     public function inlineImg($url, $title)
     {
-        return sprintf('![%s](%s) ', $title, $url);
+        return sprintf('![%s](%s)', $title, $url);
     }
 
     /**
-     * @param string $url
-     * @param string $title
-     * @return $this
+     * @return string
      */
-    public function img($url, $title)
+    public function getMarkdown()
     {
-        return $this
-            ->write($this->inlineImg($url, $title));
+        return trim($this->markdown);
     }
 
     /**
      * @param string $string
      * @return $this
      */
-    public function writeln($string)
+    protected function writeln($string)
     {
         return $this
             ->write($string)
@@ -269,19 +234,11 @@ class MarkdownBuilder
      * @param string $string
      * @return $this
      */
-    public function write($string)
+    protected function write($string)
     {
         $this->markdown .= $string;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMarkdown()
-    {
-        return trim($this->markdown);
     }
 
     /**

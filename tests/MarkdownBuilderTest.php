@@ -178,7 +178,7 @@ MARKDOWN;
         $builder = new MarkdownBuilder();
         $builder->numberedList([
             'Hallo',
-            $builder->markdown()->bulletedList([
+            $builder->block()->bulletedList([
                 'A',
                 'B',
                 'C'
@@ -222,57 +222,53 @@ MARKDOWN;
     /**
      *
      */
-    public function testImg()
+    public function testInlineImg()
     {
         $markdown = <<<MARKDOWN
 ![Cats](cat.jpg)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->img('cat.jpg', 'Cats');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        $this->assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats'));
     }
 
     /**
      *
      */
-    public function testLink()
+    public function testInlineLink()
     {
         $markdown = <<<MARKDOWN
 [Google](http://google.com)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->link('http://google.com', 'Google');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        $this->assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google'));
     }
 
     /**
      *
      */
-    public function testBold()
+    public function testInlineBold()
     {
         $markdown = <<<MARKDOWN
 **Yeah!**
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->bold('Yeah!');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        $this->assertEquals($markdown, $builder->inlineBold('Yeah!'));
     }
 
     /**
      *
      */
-    public function testItalic()
+    public function testInlineItalic()
     {
         $markdown = <<<MARKDOWN
 *Yeah!*
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->italic('Yeah!');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        $this->assertEquals($markdown, $builder->inlineItalic('Yeah!'));
     }
 
     /**
@@ -286,34 +282,6 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();;
         $this->assertEquals($markdown, $builder->inlineCode('$var = "foo";'));
-    }
-
-    /**
-     *
-     */
-    public function testWrite()
-    {
-        $markdown = <<<MARKDOWN
-foo bar
-MARKDOWN;
-
-        $builder = new MarkdownBuilder();
-        $builder->write('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
-    }
-
-    /**
-     *
-     */
-    public function testWriteln()
-    {
-        $markdown = <<<MARKDOWN
-foo bar
-MARKDOWN;
-
-        $builder = new MarkdownBuilder();
-        $builder->writeln('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
     /**
@@ -357,7 +325,9 @@ Usage
 Todos
 -----
 
-* write tests
+* 1. A
+  2. B
+  3. C
 * hallo [Google](google.com) foo bar
 * add more markdown features
 MARKDOWN;
@@ -390,38 +360,13 @@ CODE;
             ->code($code, 'php')
             ->h2('Todos')
             ->bulletedList([
-                'write tests',
                 $builder
-                    ->markdown()
-                    ->write('hallo ')
-                    ->link('google.com', 'Google')
-                    ->write('foo bar')
-                ,
+                    ->block()
+                    ->numberedList(['A', 'B', 'C']),
+                'hallo '. $builder->inlineLink('google.com', 'Google') . ' foo bar',
                 'add more markdown features'
             ]);
 
         $this->assertEquals($markdown, $builder->getMarkdown());
-
-
-        $builder = new MarkdownBuilder();
-
-        $builder
-            ->h1('Markdown Builder')
-            ->p('A simple helper class to create markdown.')
-            ->h2('Install ' . $builder->inlineBold('this') . 'powerfull library')
-            ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
-            ->h2('Usage')
-            ->code($code, 'php')
-            ->h2('Todos')
-            ->bulletedList([
-                'write tests',
-                $builder
-                    ->markdown()
-                    ->numberedList(['A', 'B', 'C'])
-                ,
-                'add more markdown features'
-            ]);
-
-        echo $builder->getMarkdown();
     }
 }
