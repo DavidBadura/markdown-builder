@@ -173,7 +173,7 @@ Markdown:
 3. Baz
 ```
 
-### hr
+#### hr
 
 PHP-Code:
 
@@ -187,7 +187,7 @@ Markdown:
 ------------------------
 ```
 
-### code
+#### code
 
 PHP-Code:
 
@@ -201,4 +201,77 @@ Markdown:
     ```php
     $var = "test";
     ```
+```
+
+### Inline Blocks
+
+#### bold
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->inlineBold('Hey!')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+**Hey!**
+```
+
+#### italic
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->inlineCode('huhu')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+*huhu*
+```
+
+
+#### code
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->inlineCode('$var = "test";')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+`$var = "test";`
+```
+
+#### link
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+[Google](http://google.de)
+```
+
+#### img
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat')->getMarkdown();
+```
+
+Markdown:
+
+```markdown
+![Cat](cat.jpg)
 ```
