@@ -83,6 +83,36 @@ MARKDOWN;
     /**
      *
      */
+    public function testBlockqouteComplex()
+    {
+        $markdown = <<<MARKDOWN
+>  test
+>  ====
+>
+>  * A
+>  * B
+>  * C
+>
+>  >  test123
+>
+>  foo bar
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->blockqoute(
+            $builder
+                ->block()
+                ->h1('test')
+                ->bulletedList(['A', 'B', 'C'])
+                ->blockqoute('test123')
+                ->p('foo bar')
+        );
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
     public function testBulletedList()
     {
         $markdown = <<<MARKDOWN
@@ -363,7 +393,7 @@ CODE;
                 $builder
                     ->block()
                     ->numberedList(['A', 'B', 'C']),
-                'hallo '. $builder->inlineLink('google.com', 'Google') . ' foo bar',
+                'hallo ' . $builder->inlineLink('google.com', 'Google') . ' foo bar',
                 'add more markdown features'
             ]);
 
