@@ -21,10 +21,8 @@ $builder = new MarkdownBuilder();
 $builder
     ->h1('Markdown Builder')
     ->p('A simple helper class to create markdown.')
-    ->h2('Install ' . $builder->inlineBold('this') . 'powerfull library')
+    ->h2('Install ' . $builder->inlineBold('this') . ' powerfull library')
     ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
-    ->h2('Usage')
-    ->code($code, 'php')
     ->h2('Todos')
     ->bulletedList([
         'write tests',
@@ -36,6 +34,28 @@ $builder
     ]);
     
 echo $builder->getMarkdown();
+```
+
+```markdown
+Markdown Builder
+================
+
+A simple helper class to create markdown.
+
+Install **this** powerfull library
+----------------------------------
+
+ ```bash
+ composer require 'davidbadura/markdown-builder@dev'
+ ```
+
+Todos
+-----
+* write tests
+* 1. A
+  2. B
+  3. C
+* add more markdown features
 ```
 
 API
