@@ -80,7 +80,7 @@ class MarkdownBuilder
     {
         $lines    = explode("\n", $text);
         $newLines = array_map(function ($line) {
-            return trim('>  ' . trim($line));
+            return trim('>  ' . $line);
         }, $lines);
 
         $content = implode("\n", $newLines);

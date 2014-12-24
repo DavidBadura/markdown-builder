@@ -72,7 +72,7 @@ MARKDOWN;
     {
         $markdown = <<<MARKDOWN
 >  foo bar
->  hey ho
+>     hey ho
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
