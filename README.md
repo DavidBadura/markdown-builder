@@ -27,7 +27,7 @@ $builder
     ->bulletedList([
         'write tests',
         $builder
-            ->markdown()
+            ->block()
             ->numberedList(['A', 'B', 'C'])
         ,
         'add more markdown features'
@@ -233,7 +233,6 @@ Markdown:
 *huhu*
 ```
 
-
 #### code
 
 PHP-Code:
@@ -274,4 +273,38 @@ Markdown:
 
 ```markdown
 ![Cat](cat.jpg)
+```
+
+### Advance features
+
+if you need collapse blocks, you can create a new builder instance with his own clean buffer.
+this can you do by call `block()`.
+
+PHP-Code:
+
+```php
+$builder = new MarkdownBuilder();
+$builder->blockqoute(
+    $builder
+      ->block()
+      ->h1('Lists')
+      ->bulletedList([
+        'Foo',
+        $builder->block()->numberedList(['A', 'B', 'C']),
+        'Bar'
+      ])
+);
+```
+
+Markdown:
+
+```markdown
+>  Lists
+>  =====
+>
+>  * Foo
+>  * 1. A
+>    2. B
+>    3. C
+>  * Bar
 ```
