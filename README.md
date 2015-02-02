@@ -9,7 +9,7 @@ Installation
 ------------
 
 ```bash
-composer require 'davidbadura/markdown-builder@dev'
+composer require 'davidbadura/markdown-builder'
 ```
 
 Usage
