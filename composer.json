@@ -1,6 +1,12 @@
 {
     "name": "davidbadura/markdown-builder",
     "description": "Markdown Builder",
+    "keywords": [
+        "markdown",
+        "builder",
+        "writer",
+        "render"
+    ],
     "license": "MIT",
     "authors": [
         {
