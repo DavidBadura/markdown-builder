@@ -85,9 +85,7 @@ class MarkdownBuilder
 
         $content = implode("\n", $newLines);
 
-        return $this
-            ->br()
-            ->p($content);
+        return $this->p($content);
     }
 
     /**
@@ -108,6 +106,8 @@ class MarkdownBuilder
                 }
             }
         }
+
+        $this->br();
 
         return $this;
     }
@@ -130,6 +130,8 @@ class MarkdownBuilder
                 }
             }
         }
+
+        $this->br();
 
         return $this;
     }

@@ -399,4 +399,28 @@ CODE;
 
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
+
+
+    /**
+     *
+     */
+    public function testListAndHeadline()
+    {
+        $markdown = <<<MARKDOWN
+* foo
+* bar
+
+test
+====
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->bulletedList([
+            "foo",
+            'bar'
+        ]);
+        $builder->h1("test");
+
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
 }
