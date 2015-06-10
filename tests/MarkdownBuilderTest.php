@@ -39,6 +39,22 @@ MARKDOWN;
     /**
      *
      */
+    public function testH1Multiline()
+    {
+        $markdown = <<<MARKDOWN
+foo bar
+=======
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->h1('foo
+        bar');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
     public function testH2()
     {
         $markdown = <<<MARKDOWN
@@ -54,6 +70,22 @@ MARKDOWN;
     /**
      *
      */
+    public function testH2Multiline()
+    {
+        $markdown = <<<MARKDOWN
+foo bar
+-------
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->h2('foo
+        bar');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
     public function testH3()
     {
         $markdown = <<<MARKDOWN
@@ -62,6 +94,21 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->h3('foo bar');
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    /**
+     *
+     */
+    public function testH3Multiline()
+    {
+        $markdown = <<<MARKDOWN
+### foo bar
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->h3('foo
+        bar');
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 

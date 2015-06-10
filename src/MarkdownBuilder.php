@@ -37,7 +37,7 @@ class MarkdownBuilder
      */
     public function h1($header)
     {
-        $header = trim($header);
+        $header = $this->singleLine($header);
 
         return $this
             ->writeln($header)
@@ -51,7 +51,7 @@ class MarkdownBuilder
      */
     public function h2($header)
     {
-        $header = trim($header);
+        $header = $this->singleLine($header);
 
         return $this
             ->writeln($header)
@@ -65,7 +65,7 @@ class MarkdownBuilder
      */
     public function h3($header)
     {
-        $header = trim($header);
+        $header = $this->singleLine($header);
 
         return $this
             ->writeln('### ' . $header)
@@ -241,6 +241,18 @@ class MarkdownBuilder
         $this->markdown .= $string;
 
         return $this;
+    }
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    protected function singleLine($string)
+    {
+        $string = str_replace("\n", "", $string);
+        $string = preg_replace('/\s+/', " ", $string);
+
+        return trim($string);
     }
 
     /**
