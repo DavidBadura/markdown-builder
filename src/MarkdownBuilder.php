@@ -87,6 +87,13 @@ class MarkdownBuilder
 
         return $this->p($content);
     }
+    
+    /**
+     * @deprecated
+     */
+    public function blockqoute($text) {
+        return $this->blockquote($text);
+    }
 
     /**
      * @param array $list
