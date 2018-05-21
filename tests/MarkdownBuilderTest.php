@@ -115,7 +115,7 @@ MARKDOWN;
     /**
      *
      */
-    public function testBlockqoute()
+    public function testBlockquote()
     {
         $markdown = <<<MARKDOWN
 >  foo bar
@@ -123,14 +123,14 @@ MARKDOWN;
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->blockqoute("foo bar\n   hey ho");
+        $builder->blockquote("foo bar\n   hey ho");
         $this->assertEquals($markdown, $builder->getMarkdown());
     }
 
     /**
      *
      */
-    public function testBlockqouteComplex()
+    public function testBlockquoteComplex()
     {
         $markdown = <<<MARKDOWN
 >  test
@@ -146,12 +146,12 @@ MARKDOWN;
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->blockqoute(
+        $builder->blockquote(
             $builder
                 ->block()
                 ->h1('test')
                 ->bulletedList(['A', 'B', 'C'])
-                ->blockqoute('test123')
+                ->blockquote('test123')
                 ->p('foo bar')
         );
         $this->assertEquals($markdown, $builder->getMarkdown());
@@ -392,8 +392,8 @@ Usage
         'zwei',
         'drei'
     ])
-    ->blockqoute('
-        qoute....
+    ->blockquote('
+        quote....
         lalalalal
     ')
     ->getMarkdown();
@@ -419,8 +419,8 @@ MARKDOWN;
         'zwei',
         'drei'
     ])
-    ->blockqoute('
-        qoute....
+    ->blockquote('
+        quote....
         lalalalal
     ')
     ->getMarkdown();

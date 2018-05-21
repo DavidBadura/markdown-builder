@@ -125,12 +125,12 @@ Markdown:
 paragraph
 ```
 
-#### blockqoute
+#### blockquote
 
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->blockqoute("Foo\nBar\nBaz")->getMarkdown();
+echo (new MarkdownBuilder())->blockquote("Foo\nBar\nBaz")->getMarkdown();
 ```
 
 Markdown:

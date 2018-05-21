@@ -76,7 +76,7 @@ class MarkdownBuilder
      * @param string $text
      * @return $this
      */
-    public function blockqoute($text)
+    public function blockquote($text)
     {
         $lines    = explode("\n", $text);
         $newLines = array_map(function ($line) {
@@ -86,6 +86,13 @@ class MarkdownBuilder
         $content = implode("\n", $newLines);
 
         return $this->p($content);
+    }
+    
+    /**
+     * @deprecated
+     */
+    public function blockqoute($text) {
+        return $this->blockquote($text);
     }
 
     /**
