@@ -1,16 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DavidBadura\MarkdownBuilder;
 
-/**
- * @author David Badura <d.a.badura@gmail.com>
- */
-class MarkdownBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class MarkdownBuilderTest extends TestCase
 {
-    /**
-     *
-     */
-    public function testP()
+    public function testP(): void
     {
         $markdown = <<<MARKDOWN
 foo bar
@@ -18,13 +16,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->p('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH1()
+    public function testH1(): void
     {
         $markdown = <<<MARKDOWN
 foo bar
@@ -33,13 +28,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->h1('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH1Multiline()
+    public function testH1Multiline(): void
     {
         $markdown = <<<MARKDOWN
 foo bar
@@ -49,13 +41,10 @@ MARKDOWN;
         $builder = new MarkdownBuilder();
         $builder->h1('foo
         bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH2()
+    public function testH2(): void
     {
         $markdown = <<<MARKDOWN
 foo bar
@@ -64,13 +53,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->h2('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH2Multiline()
+    public function testH2Multiline(): void
     {
         $markdown = <<<MARKDOWN
 foo bar
@@ -80,13 +66,10 @@ MARKDOWN;
         $builder = new MarkdownBuilder();
         $builder->h2('foo
         bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH3()
+    public function testH3(): void
     {
         $markdown = <<<MARKDOWN
 ### foo bar
@@ -94,13 +77,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->h3('foo bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testH3Multiline()
+    public function testH3Multiline(): void
     {
         $markdown = <<<MARKDOWN
 ### foo bar
@@ -109,13 +89,10 @@ MARKDOWN;
         $builder = new MarkdownBuilder();
         $builder->h3('foo
         bar');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testBlockquote()
+    public function testBlockquote(): void
     {
         $markdown = <<<MARKDOWN
 >  foo bar
@@ -124,13 +101,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->blockquote("foo bar\n   hey ho");
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testBlockquoteComplex()
+    public function testBlockquoteComplex(): void
     {
         $markdown = <<<MARKDOWN
 >  test
@@ -147,20 +121,17 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->blockquote(
-            $builder
+            (string)$builder
                 ->block()
                 ->h1('test')
                 ->bulletedList(['A', 'B', 'C'])
                 ->blockquote('test123')
                 ->p('foo bar')
         );
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testBulletedList()
+    public function testBulletedList(): void
     {
         $markdown = <<<MARKDOWN
 * Hallo
@@ -172,15 +143,12 @@ MARKDOWN;
         $builder->bulletedList([
             'Hallo',
             'foo',
-            'bar'
+            'bar',
         ]);
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testBulletedListMultiline()
+    public function testBulletedListMultiline(): void
     {
         $markdown = <<<MARKDOWN
 * Hallo
@@ -193,15 +161,12 @@ MARKDOWN;
         $builder->bulletedList([
             'Hallo',
             "foo\nbar",
-            'bar'
+            'bar',
         ]);
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testNumberedList()
+    public function testNumberedList(): void
     {
         $markdown = <<<MARKDOWN
 1. Hallo
@@ -213,15 +178,12 @@ MARKDOWN;
         $builder->numberedList([
             'Hallo',
             'foo',
-            'bar'
+            'bar',
         ]);
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testNumberedListMultiline()
+    public function testNumberedListMultiline(): void
     {
         $markdown = <<<MARKDOWN
 1. Hallo
@@ -234,15 +196,12 @@ MARKDOWN;
         $builder->numberedList([
             'Hallo',
             "foo\ngeheim",
-            'bar'
+            'bar',
         ]);
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testMutlitlists()
+    public function testMutlitlists(): void
     {
         $markdown = <<<MARKDOWN
 1. Hallo
@@ -255,20 +214,17 @@ MARKDOWN;
         $builder = new MarkdownBuilder();
         $builder->numberedList([
             'Hallo',
-            $builder->block()->bulletedList([
+            (string)$builder->block()->bulletedList([
                 'A',
                 'B',
-                'C'
+                'C',
             ]),
-            'bar'
+            'bar',
         ]);
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testHr()
+    public function testHr(): void
     {
         $markdown = <<<MARKDOWN
 ---------------------------------------
@@ -276,14 +232,10 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->hr();
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-
-    /**
-     *
-     */
-    public function testCode()
+    public function testCode(): void
     {
         $markdown = <<<MARKDOWN
 ```bash
@@ -293,78 +245,61 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->code('apt-get install php5', 'bash');
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-    /**
-     *
-     */
-    public function testInlineImg()
+    public function testInlineImg(): void
     {
         $markdown = <<<MARKDOWN
 ![Cats](cat.jpg)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $this->assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats'));
+        self::assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats'));
     }
 
-    /**
-     *
-     */
-    public function testInlineLink()
+    public function testInlineLink(): void
     {
         $markdown = <<<MARKDOWN
 [Google](http://google.com)
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $this->assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google'));
+        self::assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google'));
     }
 
-    /**
-     *
-     */
-    public function testInlineBold()
+    public function testInlineBold(): void
     {
         $markdown = <<<MARKDOWN
 **Yeah!**
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $this->assertEquals($markdown, $builder->inlineBold('Yeah!'));
+        self::assertEquals($markdown, $builder->inlineBold('Yeah!'));
     }
 
-    /**
-     *
-     */
-    public function testInlineItalic()
+    public function testInlineItalic(): void
     {
         $markdown = <<<MARKDOWN
 *Yeah!*
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $this->assertEquals($markdown, $builder->inlineItalic('Yeah!'));
+        self::assertEquals($markdown, $builder->inlineItalic('Yeah!'));
     }
 
-    /**
-     *
-     */
-    public function testInlineCode()
+    public function testInlineCode(): void
     {
         $markdown = <<<MARKDOWN
 `\$var = "foo";`
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();;
-        $this->assertEquals($markdown, $builder->inlineCode('$var = "foo";'));
+        $builder = new MarkdownBuilder();
+
+        self::assertEquals($markdown, $builder->inlineCode('$var = "foo";'));
     }
 
-    /**
-     *
-     */
-    public function testReadme()
+    public function testReadme(): void
     {
         $markdown = <<<MARKDOWN
 Markdown Builder
@@ -437,21 +372,17 @@ CODE;
             ->code($code, 'php')
             ->h2('Todos')
             ->bulletedList([
-                $builder
+                (string)$builder
                     ->block()
                     ->numberedList(['A', 'B', 'C']),
                 'hallo ' . $builder->inlineLink('google.com', 'Google') . ' foo bar',
-                'add more markdown features'
+                'add more markdown features',
             ]);
 
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 
-
-    /**
-     *
-     */
-    public function testListAndHeadline()
+    public function testListAndHeadline(): void
     {
         $markdown = <<<MARKDOWN
 * foo
@@ -463,11 +394,11 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         $builder->bulletedList([
-            "foo",
-            'bar'
+            'foo',
+            'bar',
         ]);
-        $builder->h1("test");
+        $builder->h1('test');
 
-        $this->assertEquals($markdown, $builder->getMarkdown());
+        self::assertEquals($markdown, $builder->getMarkdown());
     }
 }

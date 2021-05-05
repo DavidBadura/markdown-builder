@@ -1,3 +1,5 @@
 composer.phar
 vendor/
-composer.lock
+coverage/
+.phpcs-cache
+.phpunit.result.cache

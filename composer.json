@@ -15,10 +15,16 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=7.4",
+        "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.4"
+        "infection/infection": "^0.22.1",
+        "patchlevel/coding-standard": "^1.0.0",
+        "phpstan/phpstan": "^0.12.85",
+        "phpunit/phpunit": "^9.5.4",
+        "symfony/var-dumper": "^5.2.3",
+        "vimeo/psalm": "^4.7.2"
     },
     "autoload": {
         "psr-4": {

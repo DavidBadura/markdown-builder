@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="MarkdownBuilder">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="test">
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <report>
+            <html outputDirectory="./coverage"/>
+            <text outputFile="php://stdout"/>
+        </report>
+    </coverage>
+
+    <php>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
 </phpunit>

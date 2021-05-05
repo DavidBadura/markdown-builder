@@ -1,30 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DavidBadura\MarkdownBuilder;
 
-/**
- * @author David Badura <d.a.badura@gmail.com>
- */
+use RuntimeException;
+
+use function array_map;
+use function array_values;
+use function explode;
+use function implode;
+use function is_string;
+use function mb_strlen;
+use function preg_replace;
+use function sprintf;
+use function str_repeat;
+use function str_replace;
+use function trim;
+
 class MarkdownBuilder
 {
-    /**
-     * @var string
-     */
-    protected $markdown;
+    protected string $markdown;
 
-    /**
-     * @return MarkdownBuilder
-     */
-    public function block()
+    final public function __construct()
     {
-        return new self();
+        $this->markdown = '';
     }
 
     /**
-     * @param string $text
+     * @return static
+     */
+    public function block(): self
+    {
+        return new static();
+    }
+
+    /**
      * @return $this
      */
-    public function p($text)
+    public function p(string $text): self
     {
         return $this
             ->writeln($text)
@@ -32,38 +46,35 @@ class MarkdownBuilder
     }
 
     /**
-     * @param string $header
      * @return $this
      */
-    public function h1($header)
+    public function h1(string $header): self
     {
         $header = $this->singleLine($header);
 
         return $this
             ->writeln($header)
-            ->writeln(str_repeat("=", mb_strlen($header)))
+            ->writeln(str_repeat('=', mb_strlen($header)))
             ->br();
     }
 
     /**
-     * @param string $header
      * @return $this
      */
-    public function h2($header)
+    public function h2(string $header): self
     {
         $header = $this->singleLine($header);
 
         return $this
             ->writeln($header)
-            ->writeln(str_repeat("-", mb_strlen($header)))
+            ->writeln(str_repeat('-', mb_strlen($header)))
             ->br();
     }
 
     /**
-     * @param string $header
      * @return $this
      */
-    public function h3($header)
+    public function h3(string $header): self
     {
         $header = $this->singleLine($header);
 
@@ -73,13 +84,12 @@ class MarkdownBuilder
     }
 
     /**
-     * @param string $text
      * @return $this
      */
-    public function blockquote($text)
+    public function blockquote(string $text): self
     {
-        $lines    = explode("\n", $text);
-        $newLines = array_map(function ($line) {
+        $lines = explode("\n", $text);
+        $newLines = array_map(static function ($line) {
             return trim('>  ' . $line);
         }, $lines);
 
@@ -87,26 +97,19 @@ class MarkdownBuilder
 
         return $this->p($content);
     }
-    
-    /**
-     * @deprecated
-     */
-    public function blockqoute($text) {
-        return $this->blockquote($text);
-    }
 
     /**
-     * @param array $list
+     * @param array<string> $list
+     *
      * @return $this
      */
-    public function bulletedList(array $list)
+    public function bulletedList(array $list): self
     {
         foreach ($list as $element) {
-
             $lines = explode("\n", $element);
 
             foreach ($lines as $i => $line) {
-                if ($i == 0) {
+                if ($i === 0) {
                     $this->writeln('* ' . $line);
                 } else {
                     $this->writeln('  ' . $line);
@@ -120,17 +123,17 @@ class MarkdownBuilder
     }
 
     /**
-     * @param array $list
+     * @param array<string> $list
+     *
      * @return $this
      */
-    public function numberedList(array $list)
+    public function numberedList(array $list): self
     {
         foreach (array_values($list) as $key => $element) {
-
             $lines = explode("\n", $element);
 
             foreach ($lines as $i => $line) {
-                if ($i == 0) {
+                if ($i === 0) {
                     $this->writeln(($key + 1) . '. ' . $line);
                 } else {
                     $this->writeln('   ' . $line);
@@ -146,17 +149,15 @@ class MarkdownBuilder
     /**
      * @return $this
      */
-    public function hr()
+    public function hr(): self
     {
         return $this->p('---------------------------------------');
     }
 
     /**
-     * @param string $code
-     * @param string $lang
      * @return $this
      */
-    public function code($code, $lang = '')
+    public function code(string $code, string $lang = ''): self
     {
         return $this
             ->writeln('```' . $lang)
@@ -168,71 +169,45 @@ class MarkdownBuilder
     /**
      * @return $this
      */
-    public function br()
+    public function br(): self
     {
         return $this->write("\n");
     }
 
-    /**
-     * @param string $code
-     * @return string
-     */
-    public function inlineCode($code)
+    public function inlineCode(string $code): string
     {
         return sprintf('`%s`', $code);
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    public function inlineItalic($string)
+    public function inlineItalic(string $string): string
     {
         return sprintf('*%s*', $string);
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    public function inlineBold($string)
+    public function inlineBold(string $string): string
     {
         return sprintf('**%s**', $string);
     }
 
-    /**
-     * @param string $url
-     * @param string $title
-     * @return string
-     */
-    public function inlineLink($url, $title)
+    public function inlineLink(string $url, string $title): string
     {
         return sprintf('[%s](%s)', $title, $url);
     }
 
-    /**
-     * @param string $url
-     * @param string $title
-     * @return string
-     */
-    public function inlineImg($url, $title)
+    public function inlineImg(string $url, string $title): string
     {
         return sprintf('![%s](%s)', $title, $url);
     }
 
-    /**
-     * @return string
-     */
-    public function getMarkdown()
+    public function getMarkdown(): string
     {
         return trim($this->markdown);
     }
 
     /**
-     * @param string $string
      * @return $this
      */
-    protected function writeln($string)
+    protected function writeln(string $string): self
     {
         return $this
             ->write($string)
@@ -240,32 +215,28 @@ class MarkdownBuilder
     }
 
     /**
-     * @param string $string
      * @return $this
      */
-    protected function write($string)
+    protected function write(string $string): self
     {
         $this->markdown .= $string;
 
         return $this;
     }
 
-    /**
-     * @param $string
-     * @return mixed
-     */
-    protected function singleLine($string)
+    protected function singleLine(string $string): string
     {
-        $string = str_replace("\n", "", $string);
-        $string = preg_replace('/\s+/', " ", $string);
+        $string = str_replace("\n", '', $string);
+        $result = preg_replace('/\s+/', ' ', $string);
 
-        return trim($string);
+        if (!is_string($result)) {
+            throw new RuntimeException();
+        }
+
+        return trim($result);
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getMarkdown();
     }

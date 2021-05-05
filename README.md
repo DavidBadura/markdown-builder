@@ -1,7 +1,10 @@
 Markdown Builder
 ================
 
-[![Build Status](https://travis-ci.org/DavidBadura/markdown-builder.svg)](https://travis-ci.org/DavidBadura/markdown-builder)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fpatchlevel%2Fenum%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/DavidBadura/markdown-builder/master)
+[![Type Coverage](https://shepherd.dev/github/DavidBadura/markdown-builder/coverage.svg)](https://shepherd.dev/github/DavidBadura/markdown-builder)
+[![Latest Stable Version](https://poser.pugx.org/DavidBadura/markdown-builder/v)](//packagist.org/packages/DavidBadura/markdown-builder)
+[![License](https://poser.pugx.org/DavidBadura/markdown-builder/license)](//packagist.org/packages/DavidBadura/markdown-builder)
 
 A simple helper class to create markdown.
 
@@ -26,7 +29,7 @@ $builder
     ->h2('Todos')
     ->bulletedList([
         'write tests',
-        $builder
+        (string)$builder
             ->block()
             ->numberedList(['A', 'B', 'C'])
         ,
@@ -283,7 +286,7 @@ PHP-Code:
 ```php
 $builder = new MarkdownBuilder();
 $builder->blockqoute(
-    $builder
+    (string)$builder
       ->block()
       ->h1('Lists')
       ->bulletedList([

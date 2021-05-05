@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 if (!@include __DIR__ . '/../vendor/autoload.php') {
     die(<<<'EOT'
 You must set up the project dependencies, run the following commands:
