@@ -1,7 +1,7 @@
 Markdown Builder
 ================
 
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fpatchlevel%2Fenum%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/DavidBadura/markdown-builder/master)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FDavidBadura%2Fmarkdown-builder%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/DavidBadura/markdown-builder/master)
 [![Type Coverage](https://shepherd.dev/github/DavidBadura/markdown-builder/coverage.svg)](https://shepherd.dev/github/DavidBadura/markdown-builder)
 [![Latest Stable Version](https://poser.pugx.org/DavidBadura/markdown-builder/v)](//packagist.org/packages/DavidBadura/markdown-builder)
 [![License](https://poser.pugx.org/DavidBadura/markdown-builder/license)](//packagist.org/packages/DavidBadura/markdown-builder)
