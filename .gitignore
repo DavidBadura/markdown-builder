@@ -3,3 +3,4 @@ vendor/
 coverage/
 .phpcs-cache
 .phpunit.result.cache
+.idea/
