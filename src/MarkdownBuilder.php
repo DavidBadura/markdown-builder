@@ -174,27 +174,27 @@ class MarkdownBuilder
         return $this->write("\n");
     }
 
-    public function inlineCode(string $code): string
+    public static function inlineCode(string $code): string
     {
         return sprintf('`%s`', $code);
     }
 
-    public function inlineItalic(string $string): string
+    public static function inlineItalic(string $string): string
     {
         return sprintf('*%s*', $string);
     }
 
-    public function inlineBold(string $string): string
+    public static function inlineBold(string $string): string
     {
         return sprintf('**%s**', $string);
     }
 
-    public function inlineLink(string $url, string $title): string
+    public static function inlineLink(string $url, string $title): string
     {
         return sprintf('[%s](%s)', $title, $url);
     }
 
-    public function inlineImg(string $url, string $title): string
+    public static function inlineImg(string $url, string $title): string
     {
         return sprintf('![%s](%s)', $title, $url);
     }
