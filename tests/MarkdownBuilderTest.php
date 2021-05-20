@@ -254,8 +254,7 @@ MARKDOWN;
 ![Cats](cat.jpg)
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();
-        self::assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats'));
+        self::assertEquals($markdown, MarkdownBuilder::inlineImg('cat.jpg', 'Cats'));
     }
 
     public function testInlineLink(): void
@@ -264,8 +263,7 @@ MARKDOWN;
 [Google](http://google.com)
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();
-        self::assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google'));
+        self::assertEquals($markdown, MarkdownBuilder::inlineLink('http://google.com', 'Google'));
     }
 
     public function testInlineBold(): void
@@ -274,8 +272,7 @@ MARKDOWN;
 **Yeah!**
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();
-        self::assertEquals($markdown, $builder->inlineBold('Yeah!'));
+        self::assertEquals($markdown, MarkdownBuilder::inlineBold('Yeah!'));
     }
 
     public function testInlineItalic(): void
@@ -284,8 +281,7 @@ MARKDOWN;
 *Yeah!*
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();
-        self::assertEquals($markdown, $builder->inlineItalic('Yeah!'));
+        self::assertEquals($markdown, MarkdownBuilder::inlineItalic('Yeah!'));
     }
 
     public function testInlineCode(): void
@@ -294,9 +290,7 @@ MARKDOWN;
 `\$var = "foo";`
 MARKDOWN;
 
-        $builder = new MarkdownBuilder();
-
-        self::assertEquals($markdown, $builder->inlineCode('$var = "foo";'));
+        self::assertEquals($markdown, MarkdownBuilder::inlineCode('$var = "foo";'));
     }
 
     public function testReadme(): void
@@ -366,7 +360,7 @@ CODE;
         $builder
             ->h1('Markdown Builder')
             ->p('A simple helper class to create markdown.')
-            ->h2('Install ' . $builder->inlineBold('foo'))
+            ->h2('Install ' . MarkdownBuilder::inlineBold('foo'))
             ->code("composer require 'davidbadura/markdown-builder@dev'", 'bash')
             ->h2('Usage')
             ->code($code, 'php')
@@ -375,7 +369,7 @@ CODE;
                 (string)$builder
                     ->block()
                     ->numberedList(['A', 'B', 'C']),
-                'hallo ' . $builder->inlineLink('google.com', 'Google') . ' foo bar',
+                'hallo ' . MarkdownBuilder::inlineLink('google.com', 'Google') . ' foo bar',
                 'add more markdown features',
             ]);
 
