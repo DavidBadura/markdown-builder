@@ -194,8 +194,14 @@ class MarkdownBuilder
         return sprintf('[%s](%s)', $title, $url);
     }
 
-    public static function inlineImg(string $url, string $title): string
+    public static function inlineImg(string $url, string $title, string $width = null, string $height = null): string
     {
+        if ($width && $height)
+        {
+            $format = '<img src="%s" width="%s" height="%s" alt="%s">';
+            return sprintf($format, $url, $width, $height, $title);
+        }
+
         return sprintf('![%s](%s)', $title, $url);
     }
 
