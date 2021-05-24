@@ -255,6 +255,13 @@ MARKDOWN;
 MARKDOWN;
 
         self::assertEquals($markdown, MarkdownBuilder::inlineImg('cat.jpg', 'Cats'));
+
+        $markdown = <<<MARKDOWN
+<img src="cat.jpg" width="100" height="100" alt="Cats">
+MARKDOWN;
+
+        self::assertEquals($markdown, MarkdownBuilder::inlineImg('cat.jpg', 'Cats', '100', '100'));
+
     }
 
     public function testInlineLink(): void
