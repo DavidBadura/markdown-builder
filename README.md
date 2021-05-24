@@ -211,7 +211,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineBold('Hey!');
+echo MarkdownBuilder::inlineBold('Hey!');
 ```
 
 Markdown:
@@ -225,7 +225,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineItalic('huhu');
+echo MarkdownBuilder::inlineItalic('huhu');
 ```
 
 Markdown:
@@ -239,7 +239,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineCode('$var = "test";');
+echo MarkdownBuilder::inlineCode('$var = "test";');
 ```
 
 Markdown:
@@ -253,7 +253,7 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google');
+echo MarkdownBuilder::inlineLink('http://google.de', 'Google');
 ```
 
 Markdown:
@@ -267,13 +267,21 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat');
+echo MarkdownBuilder::inlineImg('cat.jpg', 'Cat');
+```
+Or with width and height set:
+```php
+echo MarkdownBuilder::inlineImg('cat.jpg', 'Cat', '20', '20');
 ```
 
 Markdown:
 
 ```markdown
 ![Cat](cat.jpg)
+```
+Or with width and height set:
+```markdown
+<img src="cat.jpg" width="20" height="20" alt="Cat">
 ```
 
 ### Advance features
