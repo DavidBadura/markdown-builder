@@ -248,6 +248,34 @@ MARKDOWN;
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
+    public function testDropdownOpen(): void
+    {
+        $markdown = <<<MARKDOWN
+<details open>
+<summary>test</summary>
+
+test
+</details>
+MARKDOWN;
+        $builder = new MarkdownBuilder();
+        $builder->dropdown('test', $builder->block()->p('test'), true);
+        self::assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    public function testDropdownClose(): void
+    {
+        $markdown = <<<MARKDOWN
+<details>
+<summary>test</summary>
+
+test
+</details>
+MARKDOWN;
+        $builder = new MarkdownBuilder();
+        $builder->dropdown('test', $builder->block()->p('test'));
+        self::assertEquals($markdown, $builder->getMarkdown());
+    }
+
     public function testInlineImg(): void
     {
         $markdown = <<<MARKDOWN
