@@ -285,7 +285,7 @@ MARKDOWN;
         self::assertEquals($markdown, MarkdownBuilder::inlineImg('cat.jpg', 'Cats'));
 
         $markdown = <<<MARKDOWN
-<img src="cat.jpg" width="100" height="100" alt="Cats">
+<img src="cat.jpg" width="100" height="100" title="Cats">
 MARKDOWN;
 
         self::assertEquals($markdown, MarkdownBuilder::inlineImg('cat.jpg', 'Cats', '100', '100'));
