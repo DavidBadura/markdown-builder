@@ -169,6 +169,22 @@ class MarkdownBuilder
     /**
      * @return $this
      */
+    public function dropdown(string $title, MarkdownBuilder $block, bool $open = false): self
+    {
+        $open = $open ? ' open' : '';
+
+        return $this
+            ->writeln(sprintf('<details%s>', $open))
+            ->writeln(sprintf('<summary>%s</summary>', $title))
+            ->br()
+            ->writeln($block->getMarkdown())
+            ->writeln('</details>')
+            ->br();
+    }
+
+    /**
+     * @return $this
+     */
     public function br(): self
     {
         return $this->write("\n");
