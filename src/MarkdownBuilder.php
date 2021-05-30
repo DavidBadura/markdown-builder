@@ -8,6 +8,7 @@ use RuntimeException;
 
 use function array_map;
 use function array_values;
+use function count;
 use function explode;
 use function implode;
 use function is_string;
@@ -164,6 +165,42 @@ class MarkdownBuilder
             ->writeln($code)
             ->writeln('```')
             ->br();
+    }
+
+    /**
+     * @param array<string>        $columns
+     * @param array<array<string>> $rows
+     * @param array<int>           $alignments e.g [Alignment::LEFT, Alignment::RIGHT, Alignment::RIGHT].
+     *
+     * @return $this
+     */
+    public function table(array $columns, array $rows, array $alignments = []): self
+    {
+        $this->writeln('|' . implode('|', $columns) . '|');
+
+        $this->write('|');
+        for ($i = 0; $i < count($columns); ++$i) {
+            $alignment = $alignments[$i] ?? Alignment::LEFT;
+            switch ($alignment) {
+                case Alignment::LEFT:
+                    $this->write(':-|');
+                    break;
+                case Alignment::CENTER:
+                    $this->write(':-:|');
+                    break;
+                case Alignment::RIGHT:
+                    $this->write('-:|');
+                    break;
+            }
+        }
+
+        $this->br();
+
+        foreach ($rows as $row) {
+            $this->writeln('|' . implode('|', $row) . '|');
+        }
+
+        return $this;
     }
 
     /**
