@@ -204,6 +204,28 @@ Markdown:
     $var = "test";
     ```
 
+#### table
+
+PHP-Code:
+
+```php
+echo (new MarkdownBuilder())->table(
+    ['col0', 'col1'],
+    [
+        ['row01', 'row01'],
+        ['row10', 'row11'],
+    ],
+    [Alignment::CENTER, Alignment::RIGHT]
+)->getMarkdown();
+```
+Markdown:
+
+```markdown
+|col0|col1|
+|:-:|-:|
+|row01|row01|
+```
+
 ### Inline Blocks
 
 #### bold
