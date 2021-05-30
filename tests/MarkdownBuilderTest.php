@@ -248,6 +248,43 @@ MARKDOWN;
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
+    public function testTableNoAlignments(): void
+    {
+        $markdown = <<<MARKDOWN
+|col1|col2|col3|
+|:-|:-|:-|
+|row11|row12|row13|
+|row21||row23|
+MARKDOWN;
+        $columns = ['col1', 'col2', 'col3'];
+        $rows = [
+            ['row11', 'row12', 'row13'],
+            ['row21', '', 'row23'],
+        ];
+        $builder = new MarkdownBuilder();
+        $builder->table($columns, $rows);
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
+    public function testTableAlignments(): void
+    {
+        $markdown = <<<MARKDOWN
+|col1||col3|
+|:-:|-:|-:|
+|row11|row12|row13|
+|row21||row23|
+MARKDOWN;
+        $columns = ['col1', '', 'col3'];
+        $rows = [
+            ['row11', 'row12', 'row13'],
+            ['row21', '', 'row23'],
+        ];
+        $alignments = [Alignment::CENTER, Alignment::RIGHT, Alignment::RIGHT];
+        $builder = new MarkdownBuilder();
+        $builder->table($columns, $rows, $alignments);
+        $this->assertEquals($markdown, $builder->getMarkdown());
+    }
+
     public function testInlineImg(): void
     {
         $markdown = <<<MARKDOWN
