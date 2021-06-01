@@ -16,7 +16,6 @@ use function mb_strlen;
 use function preg_replace;
 use function sprintf;
 use function str_repeat;
-use function str_replace;
 use function trim;
 
 class MarkdownBuilder
@@ -271,8 +270,7 @@ class MarkdownBuilder
 
     protected function singleLine(string $string): string
     {
-        $string = str_replace("\n", '', $string);
-        $result = preg_replace('/\s+/', ' ', $string);
+        $result = preg_replace('/(\r\n|\r|\n|\s)\s*/', ' ', $string);
 
         if (!is_string($result)) {
             throw new RuntimeException();
