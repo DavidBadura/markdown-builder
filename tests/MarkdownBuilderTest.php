@@ -39,8 +39,7 @@ foo bar
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->h1('foo
-        bar');
+        $builder->h1("foo\n\rbar");
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
@@ -64,8 +63,7 @@ foo bar
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->h2('foo
-        bar');
+        $builder->h2("foo\n\rbar");
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
@@ -87,8 +85,7 @@ MARKDOWN;
 MARKDOWN;
 
         $builder = new MarkdownBuilder();
-        $builder->h3('foo
-        bar');
+        $builder->h3("foo\n\rbar");
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
