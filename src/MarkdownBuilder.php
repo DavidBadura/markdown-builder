@@ -270,8 +270,7 @@ class MarkdownBuilder
 
     protected function singleLine(string $string): string
     {
-        $string = preg_replace("/\r|\n/", ' ', $string);
-        $result = preg_replace('/\s+/', ' ', $string);
+        $result = preg_replace('/\r\n|\r|\n|\s+/', ' ', $string);
 
         if (!is_string($result)) {
             throw new RuntimeException();
