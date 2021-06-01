@@ -275,13 +275,13 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google');
+echo (new MarkdownBuilder())->inlineLink('http://google.de', 'Google', 'Title');
 ```
 
 Markdown:
 
 ```markdown
-[Google](http://google.de)
+[Google](http://google.de "Title")
 ```
 
 #### img
@@ -289,13 +289,13 @@ Markdown:
 PHP-Code:
 
 ```php
-echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat');
+echo (new MarkdownBuilder())->inlineImg('cat.jpg', 'Cat', 'Title');
 ```
 
 Markdown:
 
 ```markdown
-![Cat](cat.jpg)
+![Cat](cat.jpg "Title")
 ```
 
 ### Advance features
