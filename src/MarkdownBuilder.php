@@ -226,14 +226,22 @@ class MarkdownBuilder
         return sprintf('**%s**', $string);
     }
 
-    public function inlineLink(string $url, string $title): string
+    public function inlineLink(string $url, string $text, ?string $title = null): string
     {
-        return sprintf('[%s](%s)', $title, $url);
+        if ($title) {
+            return sprintf('[%s](%s "%s")', $text, $url, $title);
+        }
+
+        return sprintf('[%s](%s)', $text, $url);
     }
 
-    public function inlineImg(string $url, string $title): string
+    public function inlineImg(string $url, string $altText, ?string $title = null): string
     {
-        return sprintf('![%s](%s)', $title, $url);
+        if ($title) {
+            return sprintf('![%s](%s "%s")', $altText, $url, $title);
+        }
+
+        return sprintf('![%s](%s)', $altText, $url);
     }
 
     public function getMarkdown(): string

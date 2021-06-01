@@ -295,6 +295,16 @@ MARKDOWN;
         self::assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats'));
     }
 
+    public function testInlineImgWithTitle(): void
+    {
+        $markdown = <<<MARKDOWN
+![Cats](cat.jpg "Amazing Cats")
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        self::assertEquals($markdown, $builder->inlineImg('cat.jpg', 'Cats', 'Amazing Cats'));
+    }
+
     public function testInlineLink(): void
     {
         $markdown = <<<MARKDOWN
@@ -303,6 +313,16 @@ MARKDOWN;
 
         $builder = new MarkdownBuilder();
         self::assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google'));
+    }
+
+    public function testInlineLinkWithTitle(): void
+    {
+        $markdown = <<<MARKDOWN
+[Google](http://google.com "Not Microsoft")
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        self::assertEquals($markdown, $builder->inlineLink('http://google.com', 'Google', 'Not Microsoft'));
     }
 
     public function testInlineBold(): void
