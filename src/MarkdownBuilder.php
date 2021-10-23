@@ -99,6 +99,15 @@ class MarkdownBuilder
     }
 
     /**
+     * @return $this
+     * @deprecated use blockquote()
+     */
+    public function blockqoute(string $text): self
+    {
+        return $this->blockquote($text);
+    }
+
+    /**
      * @param array<string> $list
      *
      * @return $this
