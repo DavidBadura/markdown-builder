@@ -99,8 +99,9 @@ class MarkdownBuilder
     }
 
     /**
-     * @return $this
      * @deprecated use blockquote()
+     *
+     * @return $this
      */
     public function blockqoute(string $text): self
     {
