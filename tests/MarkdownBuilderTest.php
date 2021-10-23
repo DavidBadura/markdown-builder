@@ -101,6 +101,21 @@ MARKDOWN;
         self::assertEquals($markdown, $builder->getMarkdown());
     }
 
+    /**
+     * @deprecated
+     */
+    public function testBlockquoteTypo(): void
+    {
+        $markdown = <<<MARKDOWN
+>  foo bar
+>     hey ho
+MARKDOWN;
+
+        $builder = new MarkdownBuilder();
+        $builder->blockqoute("foo bar\n   hey ho");
+        self::assertEquals($markdown, $builder->getMarkdown());
+    }
+
     public function testBlockquoteComplex(): void
     {
         $markdown = <<<MARKDOWN
