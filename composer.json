@@ -21,7 +21,7 @@
     "require-dev": {
         "infection/infection": "^0.22.1",
         "patchlevel/coding-standard": "^1.0.0",
-        "phpstan/phpstan": "^0.12.85",
+        "phpstan/phpstan": "0.12.99",
         "phpunit/phpunit": "^9.5.4",
         "symfony/var-dumper": "^5.2.3",
         "vimeo/psalm": "^4.7.2"
