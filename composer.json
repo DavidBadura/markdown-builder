@@ -24,7 +24,7 @@
         "phpstan/phpstan": "1.4.6",
         "phpunit/phpunit": "^9.5.4",
         "symfony/var-dumper": "^5.2.3",
-        "vimeo/psalm": "^4.7.2"
+        "vimeo/psalm": "4.21.0"
     },
     "autoload": {
         "psr-4": {
