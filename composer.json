@@ -19,12 +19,12 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "infection/infection": "^0.22.1",
-        "patchlevel/coding-standard": "^1.0.0",
+        "infection/infection": "0.22.1",
+        "patchlevel/coding-standard": "1.0.0",
         "phpstan/phpstan": "1.4.6",
-        "phpunit/phpunit": "^9.5.4",
+        "phpunit/phpunit": "9.5.4",
         "symfony/var-dumper": "^5.2.3",
-        "vimeo/psalm": "^4.7.2"
+        "vimeo/psalm": "4.7.2"
     },
     "autoload": {
         "psr-4": {
