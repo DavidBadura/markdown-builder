@@ -24,7 +24,8 @@
         "phpstan/phpstan": "1.4.6",
         "phpunit/phpunit": "^9.5.4",
         "symfony/var-dumper": "^5.2.3",
-        "vimeo/psalm": "^4.7.2"
+        "vimeo/psalm": "^4.7.2",
+        "composer-runtime-api": "^2.2"
     },
     "autoload": {
         "psr-4": {
@@ -36,5 +37,11 @@
             "DavidBadura\\MarkdownBuilder\\": "tests/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true
+        }
+    }
 }
