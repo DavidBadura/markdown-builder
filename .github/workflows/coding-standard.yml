@@ -4,11 +4,10 @@ name: "Check Coding Standard"
 
 on:
     pull_request:
-        branches:
-            - "master"
     push:
         branches:
             - "master"
+            - "renovate/*"
 
 jobs:
     static-analysis-coding-standard:
