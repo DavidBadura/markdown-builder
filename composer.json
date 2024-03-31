@@ -19,9 +19,9 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "infection/infection": "^0.26.0",
+        "infection/infection": "^0.28.0",
         "patchlevel/coding-standard": "^1.0.0",
-        "phpstan/phpstan": "1.10.15",
+        "phpstan/phpstan": "1.10.66",
         "phpunit/phpunit": "^9.5.4",
         "symfony/var-dumper": "^5.2.3",
         "vimeo/psalm": "^5.0.0",
