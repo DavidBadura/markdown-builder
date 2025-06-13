@@ -24,7 +24,7 @@
         "phpstan/phpstan": "1.10.15",
         "phpunit/phpunit": "^9.5.4",
         "symfony/var-dumper": "^5.2.3",
-        "vimeo/psalm": "^5.0.0",
+        "vimeo/psalm": "^6.0.0",
         "composer-runtime-api": "^2.2"
     },
     "autoload": {
