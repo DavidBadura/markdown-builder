@@ -19,7 +19,7 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "infection/infection": "^0.26.0",
+        "infection/infection": "^0.35.0",
         "patchlevel/coding-standard": "^1.0.0",
         "phpstan/phpstan": "2.1.43",
         "phpunit/phpunit": "^9.5.4",
